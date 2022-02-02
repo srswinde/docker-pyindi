@@ -1,0 +1,29 @@
+FROM python:3.8.2-buster
+
+MAINTAINER Scott Swindell "sswindell@mmto.org"
+RUN apt-get update
+RUN apt-get -y install \
+	cmake g++ libindi-dev indi-bin libnova-dev zlib1g-dev git
+
+RUN mkdir /home/indi &&\
+	useradd indi
+
+WORKDIR /home/indi
+RUN rm -rf /usr/bin/python && \
+	rm -rf /usr/bin/python3 && \
+	ln -s /usr/local/bin/python /usr/bin/python  && \
+	ln -s /usr/local/bin/python /usr/bin/python3
+
+RUN apt -y install nmap
+
+RUN pip install sqlalchemy && \
+ pip install asyncpg && \
+ pip install asyncssh && \
+ pip install rsa && \
+ pip install requests && \
+ pip install git+https://github.com/srswinde/py-saomsg
+
+COPY start_indi.sh /home/indi/start_indi.sh
+
+CMD /home/indi/start_indi.sh
+
