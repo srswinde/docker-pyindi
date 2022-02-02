@@ -42,7 +42,8 @@ then
 				echo "This Image is useless without at least one of the following defined:";
 				echo "Add INDI_FIFO_PATH to dynamically start/stop drivers";
 				echo "Add INDI_DRIVERS to start drivers at startup.";
-				exit 1;
+				echo "For testing we will run the defualt dummy_driver"
+				INDI_DRIVERS="/home/indi/dummy_driver.py"
 		fi
 fi
 

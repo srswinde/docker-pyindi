@@ -24,6 +24,7 @@ RUN pip install sqlalchemy && \
  pip install git+https://github.com/srswinde/py-saomsg
 
 COPY start_indi.sh /home/indi/start_indi.sh
+COPY dummy_driver.py /home/indi/dummy_driver.py
 
 CMD /home/indi/start_indi.sh
 

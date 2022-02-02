@@ -1,0 +1,57 @@
+{
+  "nmap.py":
+  {
+    "description": "MSG Scanner",
+    "url": "/static/nmap.html"
+  },
+
+  "powmonbino.py":
+  {
+    "description": "POWMONBINO",
+    "url": "/static/powmonbino.html",
+    "msg_server": 
+      {
+        "host": "bird",
+        "port": "2536",
+        "name": "POWMONBINO"
+      }
+  },
+
+  "tempbino.py":
+  {
+    "description": "TEMPBINO",
+    "url": "/static/tempbino.html",
+    "msg_server": 
+      {
+        "host": "bird",
+        "port": "2523",
+        "name": "TEMPBINO"
+      }
+  },
+
+  "hctserv.py":
+  {
+    "description": "Fiber Positioner/PMACs msg server",
+    "url": "/static/hctserv.html",
+    "msg_server": 
+      {
+        "host": "clark",
+        "port": "2523",
+        "name": "HCTSERV"
+      }
+
+  },
+
+  "hctpower.py":
+  {
+    "description": "Power server to talk to pulizzi 9",
+    "url": "/static/hctpower.html",
+    "msg_server": 
+      {
+        "host": "clark",
+        "port": "6111",
+        "name": "HCTPOWER"
+      }
+
+  }
+}
