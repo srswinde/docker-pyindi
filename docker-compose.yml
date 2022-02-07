@@ -9,7 +9,6 @@ services:
       - "8080:5905"
 
     environment:
-      - INDI_FIFO_PATH=/pipes/indiserver.fifo
       - INDI_DRIVER_PATH=/usr/local/bin/indi
       - INDI_SERVER_PORT=7624
       - INDI_SERVER=indiserver
@@ -18,11 +17,6 @@ services:
   indiserver:
     image: "mmtobservatory/indiserver"
     hostname: "indiserver"
-    environment:
-      - INDI_FIFO_PATH=/pipes/indiserver.fifo
-      - SSHCONFIG=/ssh
-      - PYTHONPATH=/src
-      - MSG_SERVER_DIR=/msg_servers
     volumes:
       - ./pipes:/pipes
       - ./indiserver/indidrivers:/usr/local/bin/indi

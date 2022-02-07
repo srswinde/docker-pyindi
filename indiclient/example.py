@@ -11,6 +11,8 @@ import tornado
 import tornado.web
 import os
 
+
+
 # Append to path to access pyindi
 sys.path.insert(0, str(Path.cwd().parent))
 
@@ -27,6 +29,8 @@ INDIHOST = os.environ.get('INDI_SERVER', 'indiserver') # Where the indiserver is
 PYINDI_PANEL_PAGE = "/usr/local/bin/pyindi/pyindi-panel.html" # Name of the generic indi panel
 # For all devices enter asterisk or don't provide any devices
 DEVICES = ['*']
+
+
 
 # Build classes with path to go to for page
 # These are the handlers

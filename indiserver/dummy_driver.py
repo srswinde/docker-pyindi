@@ -8,8 +8,8 @@ class Dummy(device):
     def ISGetProperties(self, device=None):
         pass
 
-    async def initProperties(self):
-        vec = self.vectorFactory('text',
+    def initProperties(self):
+        vec = self.vectorFactory('Text',
                 dict(
                     device=self.device,
                     name="text",
@@ -17,7 +17,7 @@ class Dummy(device):
                     state='Idle',
                     perm='rw',
                     group='MAIN'
-                    )
+                    ),
                 [
                     dict(
                         name='text',
@@ -32,8 +32,9 @@ class Dummy(device):
     @device.NewVectorProperty('text')
     def handleText(self, device, name, values, names):
         vec = self.IUFind(name)
-        self.IDMessage(f"Old value {vec[0].value}")
-        self.IDMessage(f"New value {values[0]}")
+        new = dict(zip(names, values))
+        self.IDMessage(f"Old value {vec['text'].value}")
+        self.IDMessage(f"New value {new['text']}")
 
     @device.repeat(5000)
     async def repeater(self):
