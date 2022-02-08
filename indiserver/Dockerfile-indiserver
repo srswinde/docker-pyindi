@@ -1,20 +1,32 @@
-FROM python:3.8.2-buster
+FROM ubuntu:20.04
 
 MAINTAINER Scott Swindell "sswindell@mmto.org"
+
+#Setup timezone and install indi-sbig dependencies
+ENV TIMEZONE US/Arizona
+RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime && echo $TIMEZONE > /etc/timezone
+
+
+
 RUN apt-get update
 RUN apt-get -y install \
-	cmake g++ libindi-dev indi-bin libnova-dev zlib1g-dev git
+	cmake g++ libnova-dev zlib1g-dev git lsb-release
+
+
+#add-apt-repository needs lsb-release first
+RUN apt install -y software-properties-common
+
+RUN add-apt-repository -y ppa:mutlaqja/ppa && \
+        apt update && \
+        apt install -y \
+        libindi-dev indi-sbig git
+
 
 RUN mkdir /home/indi &&\
 	useradd indi
 
-WORKDIR /home/indi
-RUN rm -rf /usr/bin/python && \
-	rm -rf /usr/bin/python3 && \
-	ln -s /usr/local/bin/python /usr/bin/python  && \
-	ln -s /usr/local/bin/python /usr/bin/python3
 
-RUN apt -y install nmap
+RUN apt -y install python3.8 python3-pip
 
 RUN pip install sqlalchemy && \
  pip install asyncpg && \
